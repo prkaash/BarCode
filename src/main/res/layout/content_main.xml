@@ -33,10 +33,10 @@
         android:layout_centerHorizontal="true" />
 
 
-    <ListView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
+        android:id="@+id/textView2"
         android:layout_above="@+id/button"
         android:layout_alignEnd="@+id/textView"
         android:layout_below="@+id/imageView2" />
@@ -50,7 +50,7 @@
         android:background="@drawable/pk"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/listView" />
+        android:layout_alignEnd="@+id/textView2" />
 
 
 
