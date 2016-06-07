@@ -1,13 +1,18 @@
 package com.example.kaash.barcode;
 
+import android.app.ActionBar;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -18,11 +23,21 @@ public class BarcodeActivity extends AppCompatActivity {
     BarcodeDetector barcodeDetector;
     BarcodeTrackerFactory barcodeFactory;
     CameraSource mCameraSource;
+    ImageView PicassoImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_barcode);
+
+
+        PicassoImage=(ImageView) findViewById(R.id.imageView);
+        String imageUri = "https://upload.wikimedia.org/wikipedia/commons/6/6b/Icecat1-300x300.svg";
+        Picasso.with(this)
+                .load("http://24.media.tumblr.com/tumblr_m32onohwa01qzleu4o1_400.jpg")
+                .placeholder(R.drawable.placeholder)   // optional
+                .error(R.drawable.error)      // optional
+                .resize(425,700)                        // optional
+                .into(PicassoImage);
          mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay) findViewById(R.id.overlay);
          barcodeDetector = new BarcodeDetector.Builder(getApplicationContext()).build();
@@ -30,7 +45,7 @@ public class BarcodeActivity extends AppCompatActivity {
         barcodeDetector.setProcessor(new MultiProcessor.Builder<>(barcodeFactory).build());
         mCameraSource = new CameraSource.Builder(BarcodeActivity.this, barcodeDetector)
                 .setFacing(CameraSource.CAMERA_FACING_BACK)
-                .setRequestedPreviewSize(1600, 1024)
+                .setRequestedPreviewSize(1024, 1024)
                 .build();
 
 
